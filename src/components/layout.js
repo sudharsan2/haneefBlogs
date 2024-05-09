@@ -54,7 +54,13 @@ const CustomLayout = ({ children }) => {
         label: 'Employee',
         icon: <TeamOutlined style={{ fontSize: '20px', }} />,
         linkto:'/employee'
-      }
+      },
+      // {
+      //   key: 'Form',
+      //   label: 'Employee Form',
+      //   icon: <TeamOutlined style={{ fontSize: '20px', }} />,
+      //   linkto:'/form'
+      // },
     ]
 
     const handleMenuItemClick = (key) => {
@@ -79,10 +85,11 @@ const CustomLayout = ({ children }) => {
           <span className='focusR-text'>FocusR</span>
         </div>
 
-        <div className='center'>
+        <div className='center' >
           <Input
+            // style={{borderRadius: "5px", color: '#ffffff'}}
             placeholder="Search..."
-            prefix={<SearchOutlined style={{ color: '#ffffff' }} />}
+            prefix={<SearchOutlined style={{ color: '#ffffff', height:"4vh"}} />}
           />
         </div>
 
@@ -111,12 +118,17 @@ const CustomLayout = ({ children }) => {
 
       </Header>
       <Layout style={{ height: '93vh' }}>
+        <div >
         <Sider
           breakpoint="lg"
-          width={230}
+          width={250}
+          
+          
+
+          
 
           collapsedWidth="0"
-          style={{ backgroundColor: 'rgb(233,232,232)' }}
+          style={{ backgroundColor: 'rgb(233,232,232)', height: '93vh', }}
           onBreakpoint={(broken) => {
             console.log(broken);
           }}
@@ -124,7 +136,7 @@ const CustomLayout = ({ children }) => {
             console.log(collapsed, type);
           }}
         >
-          <div className="LoggedInUser" style={{ display: 'flex', alignItems: 'center', padding: '10px', margin: '0 1px' }}>
+          <div className="LoggedInUser" style={{ display: 'flex',alignItems: 'center', padding: '10px', marginTop: '2vh' }}>
             <div style={{ backgroundColor: 'rgb(19,93,112)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '20px', color: 'white' }}>
               G
             </div>
@@ -138,13 +150,13 @@ const CustomLayout = ({ children }) => {
             mode="inline"
             defaultSelectedKeys={['Dashboard']}
             // items={items2}
-            style={{ backgroundColor: 'rgb(233,232,232)' }}
+            style={{ backgroundColor: 'rgb(233,232,232)', display: 'flex', flexDirection: 'column' }}
 
 
           >
             {items2.map(item => (
               <Menu.Item key={item.key} className='menu-item' icon={item.icon} 
-              style={{ backgroundColor: selectedMenuItem === item.key ? 'transparent' : 'inherit', borderLeft:selectedMenuItem === item.key ?'5px solid blue':'', borderRadius:'0', color:'black'}}
+              style={{ backgroundColor: selectedMenuItem === item.key ? 'transparent' : 'inherit', borderLeft:selectedMenuItem === item.key ?'5px solid blue':'', borderRadius:'0', color:'black', marginTop: "1.5vh"}}
               onClick={() => handleMenuItemClick(item.key)}>
                 <Link to={item.linkto}>
                 {item.label}
@@ -154,7 +166,9 @@ const CustomLayout = ({ children }) => {
 
           </Menu>
         </Sider>
-        <Layout >
+        </div>
+        
+        <Layout  >
         {/* style={{ padding: '14px 14px' }} */}
          
           <Content
