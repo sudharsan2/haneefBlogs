@@ -3,7 +3,7 @@
     top: 0;
     z-index: 1;
     width: 100vw;
-    height: 7vh;
+    height: 6vh;
     display: flex;
     align-items: center;
     background-color: rgb(32, 33, 32);
@@ -57,7 +57,7 @@
     width:40%;
     display: flex;
     align-items: center;
-    border-radius: 20%;
+    /* border-radius: 20%; */
     background-color: #ffffff
     
     
@@ -72,6 +72,8 @@
 .notification-container{
     display: flex;
     margin: 20px;
+    height: 30px;
+    width: 30px;
     
 }
 

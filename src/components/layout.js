@@ -7,6 +7,9 @@ import React, { useState } from 'react';
 import Login from '../pages/Login';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import Drawer1 from './drawer';
+import { SearchBox, Field, Avatar } from '@fluentui/react-components';
+import { AlertBadgeRegular  } from '@fluentui/react-icons';
 
 const { Header, Content, Footer, Sider } = Layout;
 const CustomLayout = ({ children }) => {
@@ -73,8 +76,8 @@ const CustomLayout = ({ children }) => {
   
 
   return (
-    <Layout>
-
+    
+    <div style={{height: "100vh", width: "100vw"}}>
       <Header
         className='navbar'>
         <div className="left-part" >
@@ -85,24 +88,20 @@ const CustomLayout = ({ children }) => {
           <span className='focusR-text'>FocusR</span>
         </div>
 
-        <div className='center' >
-          <Input
-            // style={{borderRadius: "5px", color: '#ffffff'}}
-            placeholder="Search..."
-            prefix={<SearchOutlined style={{ color: '#ffffff', height:"4vh"}} />}
-          />
-        </div>
+        {/* <div className='center' > */}
+        <Field  style={{display: "flex", alignItems: "center", justifyContent:"center", backgroundColor:"#fff", borderRadius: "5px"}}>
+      <SearchBox placeholder="This is a placeholder" style={{width:"100vw", height: "3vh"}} size='large' appearance='filled-darker'/>
+    </Field>
+        {/* </div> */}
 
         <div className='right-part'>
           <div className='notification-container'>
-            <Badge count={5} >
-              <BellOutlined className='notification-icon' />
-            </Badge>
+          < AlertBadgeRegular style={{color: "#fff", height:"100%", width:"100%"}}  />
           </div>
 
 
 
-          <Popover
+          {/* <Popover
             content={logoutPopoverContent}
             title={logoutPopoverHeader}
             trigger="click"
@@ -113,83 +112,16 @@ const CustomLayout = ({ children }) => {
             <div className='logout-user-icon'>
               G
             </div>
-          </Popover>
+          </Popover> */}
+
+          <Avatar color="colorful" idForColor="42" name="Gokilavani" size={40} style={{marginRight: "15px"}}/>
         </div>
 
       </Header>
-      <Layout style={{ height: '93vh' }}>
-        <div >
-        <Sider
-          breakpoint="lg"
-          width={250}
-          
-          
-
-          
-
-          collapsedWidth="0"
-          style={{ backgroundColor: 'rgb(233,232,232)', height: '93vh', }}
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
-        >
-          <div className="LoggedInUser" style={{ display: 'flex',alignItems: 'center', padding: '10px', marginTop: '2vh' }}>
-            <div style={{ backgroundColor: 'rgb(19,93,112)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '20px', color: 'white' }}>
-              G
-            </div>
-            <div style={{ marginLeft: '13px', }}>
-              <p style={{ fontSize: '17px', marginBottom: '2px', marginTop: '0', fontWeight: 'bold' }}>Gokilavani</p>
-              <p className="second" style={{ fontSize: '13px', marginBottom: '0', marginTop: '0', }}>Human Resource</p>
-            </div>
-          </div>
-          <Menu
-
-            mode="inline"
-            defaultSelectedKeys={['Dashboard']}
-            // items={items2}
-            style={{ backgroundColor: 'rgb(233,232,232)', display: 'flex', flexDirection: 'column' }}
-
-
-          >
-            {items2.map(item => (
-              <Menu.Item key={item.key} className='menu-item' icon={item.icon} 
-              style={{ backgroundColor: selectedMenuItem === item.key ? 'transparent' : 'inherit', borderLeft:selectedMenuItem === item.key ?'5px solid blue':'', borderRadius:'0', color:'black', marginTop: "1.5vh"}}
-              onClick={() => handleMenuItemClick(item.key)}>
-                <Link to={item.linkto}>
-                {item.label}
-                </Link>
-              </Menu.Item>
-            ))}
-
-          </Menu>
-        </Sider>
-        </div>
-        
-        <Layout  >
-        {/* style={{ padding: '14px 14px' }} */}
-         
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              background: 'rgb(255,254,254)',
-              borderRadius: '5px',
-            }}
-          >
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            
-          </Breadcrumb>
-            {children}
-          </Content>
-        </Layout>
+      <Layout style={{ height: '94vh' }}>
+        <Drawer1/>
       </Layout>
-    </Layout>
+    </div>
   )
 }
 
