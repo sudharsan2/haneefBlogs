@@ -10,7 +10,7 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <ReduxProvider store={store}>
-  <FluentProvider theme={webLightTheme} style={{height: "100vh", width: "100vw"}}>
+  <FluentProvider theme={webLightTheme}  >
     
     <App />
     
