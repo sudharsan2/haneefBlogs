@@ -7,8 +7,8 @@ contentpagelight:"#ffffff",
 fontcolorlight:"rgb(75,75,75)"
 },
 dark:{
-sidebarcolordark:"#242424",
-contentpagedark:"#424242",
+sidebarcolordark:"rgb(33,33,33)",
+contentpagedark:"rgb(20,20,20 )",
 fontcolordark:"rgb(240,240,240)",
 },
 theme:false

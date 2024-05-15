@@ -131,7 +131,7 @@ const useStyles = makeStyles({
   navItemdark: {
     marginTop: "10px",
     left:0,
-    backgroundColor:"#242424",
+    backgroundColor:"rgb(33,33,33)",
    
     "&:hover": {
       backgroundColor: "#616161", // Change background color on hover
@@ -222,7 +222,7 @@ const NavDrawerDefault = (props, {children}) => {
   onOpenChange={(_, { open }) => setIsOpen(open)}
   size="small"
   className={useStyles.navdrawer}
-  style={collapse ? { width: `59px`, transition: "width 0.5s" } : { transition: "width 0.5s" }}
+  style={collapse ? { width: `59px`, transition: "width 0.5s" , borderRightStyle: "none"} : { transition: "width 0.5s", borderRightStyle: "none" }}
 >
     {/* <div style={themestate?{backgroundColor:darktheme.sidebarcolordark, height: 'calc(100vh - 48px)'}:{}}> */}
     

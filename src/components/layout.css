@@ -1,5 +1,5 @@
 
-.navbar {
+.navbarlight {
     position: fixed; 
     top: 0;
     left: 0; /* Add left: 0 */
@@ -14,7 +14,22 @@
     justify-content: space-between;
     padding: 0;
 }
- 
+
+.navbardark {
+    position: fixed; 
+    top: 0;
+    left: 0; /* Add left: 0 */
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 48px;
+    /* min-height:48px; */
+    display: flex;
+    align-items: center;
+    background-color: rgb(55, 55, 55);
+    justify-content: space-between;
+    padding: 0;
+}
  
  
 .questionmark-container{
@@ -44,8 +59,17 @@
    
 }
  
+.searchboxicon span svg path {
+    color: rgb(210,210,210); /* Change 'red' to your desired color */
+  }
  
- 
+.searchboxinputtext input{
+    color: rgb(255,255,255);
+}
+
+.searchboxinputplaceholder input::placeholder{
+    color: rgb(173,173,173);
+}
  
 .menu-item {
    

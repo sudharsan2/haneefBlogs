@@ -25,18 +25,28 @@ const useStyles = makeStyles({
     display: "block",
     color:"#424242"
   },
+  r1572tok: {
+    boxSizing: "border-box",
+    color: "white",
+    display: "flex",
+  }
 });
  
 const ExampleContent = () => {
   const styles = useStyles();
+  const lighttheme = useSelector((state) => state.theme.light);
+
+  const darktheme = useSelector((state) => state.theme.dark);
+
+  const themestate = useSelector((state) => state.theme.theme)
   return (
     <div style={{marginBottom:"20px"}}>
     <div style={{ width: "320px", display: "flex", justifyContent: "space-between", marginBottom:"40px" }}>
-      <Text truncate wrap={false} className={styles.text} style={{ width: "75%" }}>
+      <Text truncate wrap={false} className={styles.text} style={themestate?{ width: "75%",color:darktheme.fontcolordark }:{ width: "75%"}}>
         FocusR Consultancy and Technologies pvt ltd.
       </Text>
      
-      <Link appearance="subtle" href="http://localhost:3001/appraisal/" style={{ width: "25%", textAlign: "right" }}>
+      <Link appearance="subtle" href="http://localhost:3001/appraisal/" style={themestate?{ width: "25%", textAlign: "right",color:darktheme.fontcolordark }:{ width: "25%", textAlign: "right"}}>
         Sign out
       </Link>
    
@@ -44,13 +54,13 @@ const ExampleContent = () => {
     <div style={{display:"flex",width: "320px", marginBottom:"10px" }}>
     <Avatar active='active' color='colorful'  name="Gokilavani K"  size={96} style={{marginLeft:"5%"}} />
     <div style={{width:"55%", marginLeft:"10%", display:"flex", flexDirection:"column",justifyContent:"center" }}>
-    <Text  wrap={false} weight='bold' className={styles.text} style={{fontSize:"20px", width:"100%", marginBottom:"10px"  }}>
+    <Text  wrap={false} weight='bold' className={styles.text} style={themestate?{fontSize:"20px", width:"100%", marginBottom:"10px",color:darktheme.fontcolordark  }:{fontSize:"20px", width:"100%", marginBottom:"10px"}}>
         Gokilavani K
       </Text>
-    <Text truncate wrap={false}  style={{fontSize:"14px", width:"100%", marginBottom:"10px",color:"#424242"   }}>
+    <Text truncate wrap={false}  style={themestate?{fontSize:"14px", width:"100%", marginBottom:"10px",color:darktheme.fontcolordark   }:{fontSize:"14px", width:"100%", marginBottom:"10px",color:"#424242"}}>
         Gokilavani.k@focusrtech.com
       </Text>
-    <Text truncate wrap={false} className={styles.text} style={{fontSize:"14px", width:"100%",   }}>
+    <Text truncate wrap={false} className={styles.text} style={themestate?{fontSize:"14px", width:"100%",color:darktheme.fontcolordark   }:{fontSize:"14px", width:"100%",}}>
         M1432
       </Text>
     </div>
@@ -87,7 +97,7 @@ const CustomLayout = ({ children }) => {
     <div style={{}}>
       <div>
       <div
-        className='navbar'>
+        className={themestate?'navbardark':'navbarlight'}>
         <div className="left-part" >
           <div className='focusr-logo'>
             <img src={frLogo} alt='FRLogo' className='focusr-logo-img'></img>
@@ -98,7 +108,7 @@ const CustomLayout = ({ children }) => {
  
         {/* <div className='center' > */}
         <Field  style={{display: "flex", alignItems: "center", justifyContent:"center", backgroundColor:"#fff", borderRadius: "5px"}}>
-      <SearchBox placeholder="Search..." style={{width:"100vw", height: "3vh"}}  size='medium'  appearance='filled-darker'/>
+      <SearchBox placeholder="Search..." style={themestate?{width:"100vw", height: "3vh", backgroundColor:"rgb(41,41,41)"}:{width:"100vw"}} className={themestate&&"searchboxicon searchboxinputtext searchboxinputplaceholder"}   size='medium'  appearance='filled-darker'/>
     </Field>
         {/* </div> */}
  
@@ -122,7 +132,7 @@ const CustomLayout = ({ children }) => {
  
          
  
-          <Popover appearance='' >
+          <Popover appearance={themestate?'inverted':""} >
             <PopoverTrigger disableButtonEnhancement>
               <div style={{marginRight: "15px", height:"48px", display:"flex", flexDirection:"column", justifyContent:"center",cursor: "pointer"}}>
             <Avatar color="colorful"  name="Gokilavani K" size={36}  />
@@ -149,7 +159,6 @@ const CustomLayout = ({ children }) => {
 }
  
 export default CustomLayout;
- 
  
  
  
