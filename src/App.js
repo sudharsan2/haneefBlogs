@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import CustomLayout from './components/layout';
+import NavDrawerDefault from './components/drawer';
 import Sample from './components/sample';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -16,8 +17,8 @@ function App() {
     <Router basename=''>
       <Routes>
         <Route path='' element={<Login/>}/>
-        
-        <Route path='dashboard'  element={<CustomLayout><Dashboard/></CustomLayout>}/>
+        {/* <Route path='dashboard'  element={<CustomLayout><Dashboard/></CustomLayout>}/> */}
+        <Route path='dashboard'  element={<CustomLayout><NavDrawerDefault><Dashboard/></NavDrawerDefault></CustomLayout>}/>
         <Route path='employee' element={<CustomLayout><Employee/></CustomLayout>}/>
         <Route path='form/:token' element={<EmployeeForm/>}/>
         
