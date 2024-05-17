@@ -1,51 +1,30 @@
-// import { useNavigate } from "react-router-dom";
-// import axios from 'axios';
-// import { Button } from '@mui/material';
-
-// const Employee=()=>{
-//     const navigate = useNavigate(); 
-
-//     const handleButtonClick = async () => {
-        
-//         try {
-//           const response = await axios.post('http://127.0.0.1:8000/user/form-links', {
-//             expiration_time: '2024-06-01T00:22:17Z',
-//             empId: 'M1432',
-//           });
-//           const token =response.data.token
-//           navigate(`/form/${token}`);
-//         } catch (error) {
-//           console.error('Error:', error);
-//           alert('An error occurred while processing your request.');
-//         }
-        
-//       };
-    
-
-    
-
-//     return(<Button onClick={handleButtonClick}>Employee</Button>)
-// }
-
-// export default Employee;
-
+import {useSelector, useDispatch} from 'react-redux';
 
 const Dashboard = () => {
+
+    const lighttheme = useSelector((state) => state.theme.light);
+ 
+    const darktheme = useSelector((state) => state.theme.dark);
+ 
+    const themestate = useSelector((state) => state.theme.theme);
+
+    const fontcolor = themestate? darktheme.fontcolordark: lighttheme.fontcolorlight
     const styles = {
-        fontFamily: '"sans-serif"',
+        fontFamily: "'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue'",
         WebkitFontSmoothing: 'antialiased',
         fontSize: '28px',
         fontWeight: 700,
         marginTop: '6px',
         marginBottom: '45px',
+        marginLeft:"50px",
         position: 'sticky',
         left: '0px',
-        color: 'rgb(0, 0, 0)',
+        color: fontcolor,
         maxWidth: '615px'
     };
 
     return (
-        <h1 style={styles}>Active users</h1>
+        <p style={styles}>Active users</p>
     );
 }
 

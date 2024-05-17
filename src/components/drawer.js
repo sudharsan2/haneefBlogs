@@ -530,15 +530,15 @@ const useStyles = makeStyles({
    
   },
   content: {
-    // ...shorthands.flex(1),
-    // ...shorthands.padding("16px"),
+    ...shorthands.flex(1),
+    ...shorthands.padding("16px"),
  
-    // display: "grid",
-    // justifyContent: "flex-start",
-    // alignItems: "flex-start",
+    display: "grid",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
    
-    // gridRowGap: tokens.spacingVerticalXXL,
-    // gridAutoRows: "max-content",
+    gridRowGap: tokens.spacingVerticalXXL,
+    gridAutoRows: "max-content",
   },
   field: {
     display: "grid",
@@ -629,7 +629,7 @@ const Settings = bundleIcon(Settings20Filled, Settings20Regular);
  
  
  
-const NavDrawerDefault = ({children}) => {
+const NavDrawerDefault = (props) => {
 
   const navigate = useNavigate();
  
@@ -653,7 +653,7 @@ const NavDrawerDefault = ({children}) => {
   const [type, setType] = useState("inline");
  
   const someClickHandler = () => {
-    navigate("employee");
+    navigate("/employee");
   };
  
   return (
@@ -673,7 +673,7 @@ const NavDrawerDefault = ({children}) => {
     {/* <div style={themestate?{backgroundColor:darktheme.sidebarcolordark, height: 'calc(100vh - 48px)'}:{}}> */}
    
   <NavDrawerHeader
-    style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer"}:{cursor:"pointer"}}
+    style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer",WebkitTapHighlightColor: 'transparent'}:{cursor:"pointer",WebkitTapHighlightColor: 'transparent'}}
   >
     <NavDrawerHeaderNav
         onClick={() => {
@@ -698,7 +698,7 @@ const NavDrawerDefault = ({children}) => {
  
   {collapse ? (
     <NavDrawerBody
-        style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer"}:{cursor:"pointer"}}
+        style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer",WebkitTapHighlightColor: 'transparent'}:{cursor:"pointer",WebkitTapHighlightColor: 'transparent'}}
      >
       <Tooltip content={'Dashboard'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
       <NavItem
@@ -766,7 +766,7 @@ const NavDrawerDefault = ({children}) => {
     </NavDrawerBody>
   ) : (
     <NavDrawerBody
-    style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer"}:{cursor:"pointer"}}
+    style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer",WebkitTapHighlightColor: 'transparent'}:{cursor:"pointer",WebkitTapHighlightColor: 'transparent'}}
     >
       <div style={{width:'100%'}}>
       <NavItem
@@ -888,9 +888,9 @@ const NavDrawerDefault = ({children}) => {
           </RadioGroup>
         </div> */}
         {/* {Children} */}
-        <div style={{}}>
-        {children}
-        </div>
+        
+        {props.children}
+        
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ function App() {
         <Route path='' element={<Login/>}/>
         {/* <Route path='dashboard'  element={<CustomLayout><Dashboard/></CustomLayout>}/> */}
         <Route path='dashboard'  element={<CustomLayout><NavDrawerDefault><Dashboard/></NavDrawerDefault></CustomLayout>}/>
-        <Route path='employee' element={<CustomLayout><Employee/></CustomLayout>}/>
+        <Route path='employee' element={<CustomLayout><NavDrawerDefault><Employee/></NavDrawerDefault></CustomLayout>}/>
         <Route path='form/:token' element={<EmployeeForm/>}/>
         
 

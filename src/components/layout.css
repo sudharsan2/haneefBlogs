@@ -40,6 +40,7 @@
     height: 30px;
     width: 30px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
    
 }
 
@@ -135,6 +136,7 @@
     height: 30px;
     width: 30px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
    
 }
  
