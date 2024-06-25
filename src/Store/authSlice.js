@@ -48,7 +48,7 @@ export const fetchLoginDetailsAsync = createAsyncThunk(
   async (payload, { rejectWithValue, dispatch }) => {
     try {
       const response = await api.post(
-        "user/signin",
+        "blog/login",
         payload
       );
 

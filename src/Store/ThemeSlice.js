@@ -17,26 +17,22 @@ contentpagedark:"rgb(20,20,20 )",
 // fontcolordark:"rgb(240,240,240)",
 fontcolordark:"rgb(200,200,200)",
 },
+collappse:false,
 theme:loadThemeFromLocalStorage()
 };
+
 
 const themeSlice=createSlice({
     name:'theme',
     initialState,
     reducers:{
-        // darktheme(state){
-        //     state.sidebarcolordark;
-        //     state.contentpagedark;
-        //     state.theme;
-        // },
-        // lighttheme(state){
-        //     state.sidebarcolorlight;
-        //     state.contentpagelight;
-        //     state.theme;
-        // },
         toggletheme(state){
             state.theme = !state.theme;
             localStorage.setItem("focusrappraisaltheme", JSON.stringify(state.theme));
+        },
+        togglecollapse(state){
+            state.collappse = !state.collappse;
+            localStorage.setItem("focusrappraisalcollapse", JSON.stringify(state.collappse));
         }
     }
 });

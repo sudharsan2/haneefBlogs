@@ -57,7 +57,7 @@ const FormPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/user/form-links/${token}`);
+        const response = await axios.get(`http://172.235.21.99:9591/user/form-links/${token}`);
         setResponse1(response.data); // Assuming response.data contains the necessary data
         
       } catch (error) {
@@ -84,7 +84,7 @@ const FormPage = () => {
     try {
         console.log('Error fetching data:',response1)
     
-      const response = await axios.put(`http://127.0.0.1:8000/user/handleSubmitted/${response1.tokens}`, formData);
+      const response = await axios.put(`http://172.235.21.99:9591/user/handleSubmitted/${response1.tokens}`, formData);
       setChange(true)
     } catch (error) {
       console.error('Error:', error);

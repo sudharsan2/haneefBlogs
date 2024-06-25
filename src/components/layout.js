@@ -13,6 +13,8 @@ import { AlertBadgeRegular, QuestionRegular, WeatherSunnyRegular, WeatherMoonReg
 import { themeActions } from '../Store/Store';
 import { calc } from 'antd/es/theme/internal';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
+import { logoutAction } from '../Store/authSlice';
  
 const { Header, Content, Footer, Sider } = Layout;
 const useStyles = makeStyles({
@@ -37,6 +39,14 @@ const ExampleContent = () => {
   const lighttheme = useSelector((state) => state.theme.light);
   const darktheme = useSelector((state) => state.theme.dark);
   const themestate = useSelector((state) => state.theme.theme);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.clear(); // Clear all items in local storage
+    dispatch(logoutAction());
+    navigate("/", { replace: true });
+  };
  
   return (
     <div style={{ marginBottom: "20px" }}>
@@ -44,21 +54,22 @@ const ExampleContent = () => {
         <Text truncate wrap={false} className={styles.text} style={themestate ? { width: "75%", color: darktheme.fontcolordark } : { width: "75%" }}>
           FocusR Consultancy and Technologies pvt ltd.
         </Text>
-        <Link appearance="subtle" href="http://localhost:3000/" style={themestate ? { width: "25%", textAlign: "right", color: darktheme.fontcolordark ,WebkitTapHighlightColor: 'transparent'} : { width: "25%", textAlign: "right",WebkitTapHighlightColor: 'transparent' }}>
+        <Link appearance="subtle"  style={themestate ? { width: "25%", textAlign: "right", color: darktheme.fontcolordark ,WebkitTapHighlightColor: 'transparent'} : { width: "25%", textAlign: "right",WebkitTapHighlightColor: 'transparent' }}
+        onClick={handleLogout}>
           Sign out
         </Link>
       </div>
       <div style={{ display: "flex", width: "320px", marginBottom: "10px" }}>
-        <Avatar active='active' color='colorful' name="Gokilavani K" size={96} style={{ marginLeft: "5%" }} />
+        <Avatar active='active' color='colorful' name={localStorage.getItem('name')} size={96} style={{ marginLeft: "5%" }} />
         <div style={{ width: "55%", marginLeft: "10%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <Text wrap={false} weight='bold' className={styles.text} style={themestate ? { fontSize: "20px", width: "100%", marginBottom: "10px", color: darktheme.fontcolordark } : { fontSize: "20px", width: "100%", marginBottom: "10px" }}>
-            Gokilavani K
+            {localStorage.getItem('name')}
           </Text>
           <Text truncate wrap={false} style={themestate ? { fontSize: "14px", width: "100%", marginBottom: "10px", color: darktheme.fontcolordark } : { fontSize: "14px", width: "100%", marginBottom: "10px", color: "#424242" }}>
-            Gokilavani.k@focusrtech.com
+          {localStorage.getItem('mail')}
           </Text>
           <Text truncate wrap={false} className={styles.text} style={themestate ? { fontSize: "14px", width: "100%", color: darktheme.fontcolordark } : { fontSize: "14px", width: "100%" }}>
-            M1432
+          {localStorage.getItem('empId')}
           </Text>
         </div>
       </div>
@@ -124,17 +135,17 @@ const CustomLayout = ({ children }) => {
             <div className='focusr-logo'>
               <img src={frLogo} alt='FRLogo' className='focusr-logo-img'></img>
             </div>
-            <span className='focusR-text'>FocusR Ace</span>
+            <span className='focusR-text'>FocusR blogs</span>
           </div>
           <Field style={themestate?{ display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgb(41,41,41)", borderRadius: "5px" }
                       :{display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#fff", borderRadius: "5px"}}>
-            <SearchBox
+            {/* <SearchBox
               placeholder="Search..."
               style={getSearchBoxStyle()}
               className={themestate && "searchboxicon searchboxinputtext searchboxinputplaceholder"}
               size='medium'
               appearance='filled-darker'
-            />
+            /> */}
           </Field>
           <div className='right-part'>
             <div className='theme-container' onClick={handleTheme} style={{WebkitTapHighlightColor: 'transparent'}}>
@@ -146,7 +157,7 @@ const CustomLayout = ({ children }) => {
                 size={26}
               />
             </div>
-            <div className='notification-container'>
+            <div className='notificationss-container'>
               <AlertBadgeRegular style={{ color: "#fff", height: "100%", width: "100%" ,cursor:"pointer"}} />
             </div>
             <div className='questionmark-container'>
@@ -157,7 +168,7 @@ const CustomLayout = ({ children }) => {
             <Popover appearance={themestate ? 'inverted' : ""}>
               <PopoverTrigger disableButtonEnhancement>
                 <div style={{ marginRight: "15px", height: "48px", display: "flex", flexDirection: "column", justifyContent: "center",cursor:"pointer",WebkitTapHighlightColor: 'transparent' }}>
-                  <Avatar color="colorful" name="Gokilavani K" size={36} />
+                  <Avatar color="colorful" name={localStorage.getItem('name')} size={36} />
                 </div>
               </PopoverTrigger>
               <PopoverSurface tabIndex={-5}>

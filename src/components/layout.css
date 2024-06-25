@@ -130,7 +130,7 @@
     padding: 10px;
 }
  
-.notification-container{
+.notificationss-container{
     display: flex;
     margin: 20px;
     height: 30px;
@@ -197,7 +197,7 @@
 }
  
 @media (max-width: 238px) {
-    .notification-container {
+    .notificationss-container {
         display: none;
     }
 }

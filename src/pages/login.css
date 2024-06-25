@@ -116,7 +116,7 @@ input:hover {
 }
 
 .log-button {
-  width: calc(100% - 40px);
+  width: 150px;
   padding: 12px;
   background-color: 0078D4;
   color: white;

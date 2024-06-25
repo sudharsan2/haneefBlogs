@@ -1,0 +1,18 @@
+.rhzkxut {
+    inset: 0px;
+    padding: 24px;
+    margin: auto;
+    overflow: unset;
+    border: 1px solid var(--colorTransparentStroke);
+    border-radius: var(--borderRadiusXLarge);
+    display: block;
+    user-select: unset;
+    visibility: unset;
+    position: fixed;
+    height: fit-content;
+    max-width: 1200px;
+    max-height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--colorNeutralBackground1);
+    color: var(--colorNeutralForeground1);
+}

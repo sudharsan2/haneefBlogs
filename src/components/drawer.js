@@ -511,6 +511,8 @@ import {
     useId,
     Tooltip
   } from "@fluentui/react-components";
+
+import { themeActions } from '../Store/Store';
  
 const useStyles = makeStyles({
   root: {
@@ -592,7 +594,11 @@ const useStyles = makeStyles({
         backgroundColor: "#f0f0f0", // Change background color on hover
        
       },
-  }
+  },
+  scrollableContainer: {
+    width: '100%',
+    overflowX: 'auto',
+  },
 });
  
 const Person = bundleIcon(PersonFilled, PersonRegular);
@@ -642,8 +648,8 @@ const NavDrawerDefault = (props) => {
   const themestate = useSelector((state) => state.theme.theme)
  
  
- 
-  const [collapse, setCollapse] = useState(false);
+  const col = useSelector((state) => state.theme.collappse)
+  const [collapse, setCollapse] = useState(col);
  
   const styles = useStyles();
  
@@ -652,8 +658,8 @@ const NavDrawerDefault = (props) => {
   const [isOpen, setIsOpen] = useState(true);
   const [type, setType] = useState("inline");
  
-  const someClickHandler = () => {
-    navigate("/employee");
+  const someClickHandler = (param) => {
+    navigate(`/${param}`);
   };
  
   return (
@@ -677,7 +683,7 @@ const NavDrawerDefault = (props) => {
   >
     <NavDrawerHeaderNav
         onClick={() => {
-          setCollapse(!collapse);
+          dispatch(themeActions.togglecollapse());
         }}
        
        
@@ -700,11 +706,11 @@ const NavDrawerDefault = (props) => {
     <NavDrawerBody
         style={themestate?{backgroundColor:darktheme.sidebarcolordark, cursor:"pointer",WebkitTapHighlightColor: 'transparent'}:{cursor:"pointer",WebkitTapHighlightColor: 'transparent'}}
      >
-      <Tooltip content={'Dashboard'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
+      <Tooltip content={'Blogs'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
       <NavItem
-        target="_blank"
+        target="dashboard"
         icon={<Dashboard style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
-        onClick={someClickHandler}
+        onClick={()=> someClickHandler("dashboard")}
         value="1"
         className={themestate? styles.navItemdark : styles.navItemlight}
       >
@@ -712,11 +718,23 @@ const NavDrawerDefault = (props) => {
       </NavItem>
       </Tooltip>
  
-      <Tooltip content={'Employee'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
+      <Tooltip content={'New Post'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
       <NavItem
-        target="_blank"
+        target="employee"
         icon={<LayerDiagonalPersonRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
-        onClick={someClickHandler}
+        onClick={()=> someClickHandler("employee")}
+        value="2"
+        className={themestate? styles.navItemdark : styles.navItemlight}
+      >
+       
+      </NavItem>
+      </Tooltip>
+
+      <Tooltip content={'New Mail'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
+      <NavItem
+        target="employee"
+        icon={<LayerDiagonalPersonRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
+        onClick={()=> someClickHandler("employee")}
         value="2"
         className={themestate? styles.navItemdark : styles.navItemlight}
       >
@@ -726,7 +744,7 @@ const NavDrawerDefault = (props) => {
  
  
  
-      <Tooltip content={'Manager'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
+      {/* <Tooltip content={'Manager'} positioning='after' withArrow={true} appearance={themestate?"inverted":"normal"}>
       <NavItem
         target="_blank"
         icon={<PersonStarRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
@@ -762,7 +780,7 @@ const NavDrawerDefault = (props) => {
       >
        
       </NavItem>
-      </Tooltip>
+      </Tooltip> */}
     </NavDrawerBody>
   ) : (
     <NavDrawerBody
@@ -772,28 +790,53 @@ const NavDrawerDefault = (props) => {
       <NavItem
         target="_blank"
         icon={<Dashboard style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
-        onClick={someClickHandler}
+        onClick={()=> someClickHandler("blogslist")}
         value="1"
         className={themestate? styles.navItemdark : styles.navItemlight}
         style={{ marginTop: "10px", fontSize:"17px"}}      
         >
-        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Dashboard</div>
+        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Blogs</div>
+      </NavItem>
+      </div>
+      <div style={{width:'100%'}}>
+      <NavItem
+        target="_blank"
+        icon={<Dashboard style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
+        onClick={()=> someClickHandler("maillist")}
+        value="2"
+        className={themestate? styles.navItemdark : styles.navItemlight}
+        style={{ marginTop: "10px", fontSize:"17px"}}      
+        >
+        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Mails</div>
       </NavItem>
       </div>
       <div style={{width:'100%'} }>
       <NavItem
         target="_blank"
         icon={<LayerDiagonalPersonRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
-        onClick={someClickHandler}
-        value="2"
+        onClick={()=> someClickHandler("addpost")}
+        value="3"
         className={themestate? styles.navItemdark : styles.navItemlight}
         style={{ marginTop: "10px", fontSize:"17px"}}  
         >
-        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Employee</div>
+        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Add Post</div>
        
       </NavItem>
       </div>
-      <div style={{width:'100%'}}>
+      <div style={{width:'100%'} }>
+      <NavItem
+        target="_blank"
+        icon={<LayerDiagonalPersonRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
+        onClick={()=> someClickHandler("addmail")}
+        value="4"
+        className={themestate? styles.navItemdark : styles.navItemlight}
+        style={{ marginTop: "10px", fontSize:"17px"}}  
+        >
+        <div style={themestate?{marginTop:"2px" , color:darktheme.fontcolordark}:{marginTop:"2px" , color:lighttheme.fontcolorlight}}>Add Mail</div>
+       
+      </NavItem>
+      </div>
+      {/* <div style={{width:'100%'}}>
       <NavItem
         target="_blank"
         icon={<PersonStarRegular style={themestate?{color:darktheme.fontcolordark}:{color:lighttheme.fontcolorlight}} />}
@@ -831,7 +874,7 @@ const NavDrawerDefault = (props) => {
         <div style={{marginTop:"2px"}}>Summary</div>
        
       </NavItem>
-      </div>
+      </div> */}
     </NavDrawerBody>
   )}
  
@@ -870,7 +913,7 @@ const NavDrawerDefault = (props) => {
 </NavDrawer>
 {/* </div> */}
  
- 
+<div className={styles.scrollableContainer} style={themestate?{background:darktheme.contentpagedark}:{}}>
       <div className={styles.content} style={themestate?{background:darktheme.contentpagedark}:{}} >
         {/* <Button appearance="primary" onClick={() => setIsOpen(!isOpen)}>
           {type === "inline" ? "Toggle" : "Open"}
@@ -891,6 +934,7 @@ const NavDrawerDefault = (props) => {
         
         {props.children}
         
+      </div>
       </div>
     </div>
   );
