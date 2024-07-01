@@ -1,18 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import {
-  makeStyles,
-  Input,
-  Textarea,
-  Label,
-  Button,
-} from "@fluentui/react-components";
+import { makeStyles, Input, Label, Button } from "@fluentui/react-components";
 import { SaveRegular, DeleteRegular } from "@fluentui/react-icons";
-import HtmlEditor, {
-  Toolbar,
-  MediaResizing,
-  ImageUpload,
-  Item,
-} from 'devextreme-react/html-editor';
+import HtmlEditor, { Toolbar, MediaResizing, ImageUpload, Item } from 'devextreme-react/html-editor';
 import CheckBox from 'devextreme-react/check-box';
 import SelectBox from 'devextreme-react/select-box';
 import { UploadOutlined } from '@ant-design/icons';
@@ -21,8 +10,8 @@ import Compressor from 'compressorjs';
 import axios from 'axios';
 import './thumbnailpicker.css';
 import "./Newpost.css";
-import {useSelector, useDispatch} from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import "@fontsource/open-sans"; // Defaults to weight 400.
 
 const sizeValues = ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'];
 
@@ -58,15 +47,9 @@ const tabs = [
 const tabLabel = { 'aria-label': 'Tab' };
 
 const fontValues = [
-  'Arial',
-  'Courier New',
-  'Georgia',
-  'Impact',
-  'Lucida Console',
-  'Tahoma',
-  'Times New Roman',
-  'Verdana',
+  'Open Sans',
 ];
+
 const headerValues = [false, 1, 2, 3, 4, 5];
 const fontSizeOptions = {
   inputAttr: {
@@ -134,18 +117,18 @@ export default function App() {
     formData.append('footer', author);
     formData.append('author',footer)
 
-    const forms = {'content': editorValue,
-    'title': title,
-    'thumbnail': base64,
-    'footer': author,
-    'author':footer
-}
-
+    const forms = {
+      'content': editorValue,
+      'title': title,
+      'thumbnail': base64,
+      'footer': author,
+      'author':footer
+    }
 
     console.log('thumbnail', base64);
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await axios.post('http://172.235.21.99:9591/blog/saveblog', forms,{
+      const response = await axios.post('http://172.235.21.99:9591/blog/saveblog', forms, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -181,7 +164,7 @@ export default function App() {
   }, []);
 
   return (
-    <div style={collapsed?{ display: "flex", justifyContent: "center", overflowX: "scroll", width: "calc(100vw - 59px)" }:{ display: "flex", justifyContent: "center", overflowX: "scroll", width: "calc(100vw - 260px)" }}>
+    <div style={collapsed ? { display: "flex", justifyContent: "center", overflowX: "scroll", width: "calc(100vw - 59px)" } : { display: "flex", justifyContent: "center", overflowX: "scroll", width: "calc(100vw - 260px)" }}>
       <form className={styles.root} onSubmit={handleUpload}>
         <Label htmlFor="title">Title</Label>
         <Input

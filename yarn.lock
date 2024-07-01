@@ -2690,6 +2690,11 @@
     "@fluentui/set-version" "^8.2.17"
     tslib "^2.1.0"
 
+"@fontsource/open-sans@^5.0.28":
+  version "5.0.28"
+  resolved "https://registry.npmjs.org/@fontsource/open-sans/-/open-sans-5.0.28.tgz"
+  integrity sha512-hBvJHY76pJT/JynGUB5EXWhnzjYfLdcMn655J5p1v9lTT9HdQSy+keq2KPVXO2Htlg998BBa3p6u/jlrZ6w0kg==
+
 "@griffel/core@^1.14.1", "@griffel/core@^1.16.0":
   version "1.16.0"
   resolved "https://registry.npmjs.org/@griffel/core/-/core-1.16.0.tgz"

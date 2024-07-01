@@ -3,8 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import { Provider as ReduxProvider } from "react-redux";
 import store  from "./Store/Store";
-
-
+import "@fontsource/open-sans"; 
 
 
 

@@ -8,6 +8,7 @@
     "@fluentui/react": "^8.118.2",
     "@fluentui/react-components": "^9.50.0",
     "@fluentui/react-nav-preview": "^0.1.0",
+    "@fontsource/open-sans": "^5.0.28",
     "@mui/material": "^5.15.16",
     "@reduxjs/toolkit": "^2.2.4",
     "@testing-library/jest-dom": "^5.17.0",

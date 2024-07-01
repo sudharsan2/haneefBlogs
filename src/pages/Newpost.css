@@ -1,4 +1,9 @@
-.dx-htmleditor-content img {
+
+   .dx-htmleditor-content * {
+    font-family: 'Open Sans', sans-serif !important;
+  }
+  
+  .dx-htmleditor-content img {
     vertical-align: middle;
     padding-right: 10px;
   }
