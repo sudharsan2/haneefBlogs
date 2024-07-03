@@ -149,20 +149,20 @@ const CustomLayout = ({ children }) => {
           </Field>
           <div className='right-part'>
             <div className='theme-container' onClick={handleTheme} style={{WebkitTapHighlightColor: 'transparent'}}>
-              <DarkModeSwitch
+              {/* <DarkModeSwitch
                 checked={isDarkMode}
                 onChange={toggleDarkMode}
                 sunColor='rgb(239, 213, 112)'
                 moonColor='rgb(246, 241, 150)'
                 size={26}
-              />
+              /> */}
             </div>
             <div className='notificationss-container'>
-              <AlertBadgeRegular style={{ color: "#fff", height: "100%", width: "100%" ,cursor:"pointer"}} />
+              {/* <AlertBadgeRegular style={{ color: "#fff", height: "100%", width: "100%" ,cursor:"pointer"}} /> */}
             </div>
             <div className='questionmark-container'>
             <a href='https://focusrtech.com/' target="_blank" rel="noopener noreferrer">
-              <QuestionRegular style={{ color: "#fff", height: "100%", width: "100%" }} />
+              {/* <QuestionRegular style={{ color: "#fff", height: "100%", width: "100%" }} /> */}
             </a>
             </div>
             <Popover appearance={themestate ? 'inverted' : ""}>
