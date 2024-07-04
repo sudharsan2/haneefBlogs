@@ -504,7 +504,7 @@ const Enquiries = (props) => {
 
   const fetchEmployeeData = () => {
     const accessToken = localStorage.getItem("accessToken");
-    axios.get('http://127.0.0.1:7000/retreiveEnquiries',{
+    axios.get('https://focusrapi.focusrtech.com:83/retreiveEnquiries',{
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

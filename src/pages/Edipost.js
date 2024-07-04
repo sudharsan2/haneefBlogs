@@ -147,7 +147,7 @@ export default function Edit({contents}) {
     console.log('thumbnail', base64);
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await axios.post('http://172.235.21.99:9591/blog/saveblog', forms,{
+      const response = await axios.post(`http://172.235.21.99:9591/blog/editblog/${postId}`, forms,{
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

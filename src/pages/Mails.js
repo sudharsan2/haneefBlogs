@@ -101,8 +101,15 @@ export const Blogs = () => {
     fetchBlogs();
   }, [deletes, publish]);
 
-  const handlePreview = (content) => {
-    setSelectedBlogContent(content);
+  const handlePreview = async (postId) => {
+    
+    try {
+      const response = await axios.get(`http://172.235.21.99:9591/blog/retrieveparticularmail/${postId}`);
+      const content = response.data.content;  // Assuming 'content' is part of the response data
+      setSelectedBlogContent(content);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    }
   };
 
   const handleDelete = async (value) => {
@@ -204,7 +211,7 @@ const handlePublish = async (value) => {
                         null
                     )}
                   <DialogTrigger>
-                    <Button icon={<EyeTrackingFilled fontSize={16} />} onClick={() => handlePreview(blog.content)}>Preview</Button>
+                    <Button icon={<EyeTrackingFilled fontSize={16} />} onClick={() => handlePreview(blog.postId)}>Preview</Button>
                   </DialogTrigger>
                   {selectedBlogContent !== null && (
                     <Dialog  open={true} onDismiss={handleClose}>

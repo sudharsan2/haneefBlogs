@@ -296,9 +296,15 @@ export const Blogs = ({ empId }) => {
     fetchBlogs();
   }, [empId, approved]); // Add empId to dependency array
 
-  const handlePreview = (postId, content) => {
-    setSelectedPostId(postId); // Set the selected post ID
-    setSelectedBlogContent(content);
+  const handlePreview = async (postId) => {
+    setSelectedPostId(postId);
+    try {
+      const response = await axios.get(`http://172.235.21.99:9591/blog/retrieveparticularpost/${postId}`);
+      const content = response.data.content;  // Assuming 'content' is part of the response data
+      setSelectedBlogContent(content);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    }
   };
 
   const handleClose = () => {

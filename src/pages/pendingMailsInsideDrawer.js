@@ -296,9 +296,15 @@ export const Blogs = ({ empId }) => {
     fetchBlogs();
   }, [empId, approved]); // Add empId to dependency array
 
-  const handlePreview = (postId, content) => {
-    setSelectedPostId(postId); // Set the selected post ID
-    setSelectedBlogContent(content);
+  const handlePreview = async (postId) => {
+    setSelectedPostId(postId);
+    try {
+      const response = await axios.get(`http://172.235.21.99:9591/blog/retrieveparticularmail/${postId}`);
+      const content = response.data.content;  // Assuming 'content' is part of the response data
+      setSelectedBlogContent(content);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    }
   };
 
   const handleClose = () => {
@@ -351,7 +357,7 @@ export const Blogs = ({ empId }) => {
               </CardPreview>
               <CardFooter>
                 <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
-                  <Button icon={<EyeTrackingFilled fontSize={16} />} onClick={() => handlePreview(blog.postId, blog.content)}>Preview</Button>
+                  <Button icon={<EyeTrackingFilled fontSize={16} />} onClick={() => handlePreview(blog.postId)}>Preview</Button>
                   <DialogTrigger>
                     {selectedBlogContent !== null && (
                       <Dialog open={true} onDismiss={handleClose}>
